@@ -41,6 +41,10 @@ npm run dev
 npm run build
 ```
 
+## Deployment
+
+This project is automatically deployed to GitHub Pages using GitHub Actions. Any push to the main branch will trigger a new deployment.
+
 ## Live Demo
 
 Visit the live site at: [Happy Tea Link Tree](https://milkdeleche.github.io/happytealinktree1)
