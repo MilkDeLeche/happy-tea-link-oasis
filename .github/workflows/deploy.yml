@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_URL: /happytealinktree1/
+          VITE_BASE_URL: /happy-tea-link-oasis/
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
