@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy Tea</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -106,6 +107,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .button:hover {
@@ -131,6 +133,13 @@
         .instagram-item {
             aspect-ratio: 9/16;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .instagram-item:hover {
+            transform: scale(1.05);
+            z-index: 1;
         }
 
         .instagram-item img, .instagram-item video {
@@ -184,6 +193,43 @@
                 padding: 12px 20px;
             }
         }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .modal-content img, .modal-content video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
     </style>
   </head>
 
@@ -215,15 +261,15 @@
         </div>
         
         <div class="instagram-grid">
-            <div class="instagram-item">
+            <div class="instagram-item" data-media="vid1.mp4" data-type="video">
                 <video autoplay muted loop playsinline>
                     <source src="/images/vid1.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="instagram-item">
+            <div class="instagram-item" data-media="bienvnido a otono.jpg" data-type="image">
                 <img src="/images/bienvnido a otono.jpg" alt="Bienvenido Otoño">
             </div>
-            <div class="instagram-item">
+            <div class="instagram-item" data-media="vid2.mp4" data-type="video">
                 <video autoplay muted loop playsinline>
                     <source src="/images/vid2.mp4" type="video/mp4">
                 </video>
@@ -235,5 +281,79 @@
             @happytea.uy
         </a>
     </div>
+
+    <!-- Modal -->
+    <div class="modal" id="mediaModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('mediaModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.querySelector('.close-modal');
+        const instagramItems = document.querySelectorAll('.instagram-item');
+
+        function openModal(media, type) {
+            modalContent.innerHTML = '';
+            if (type === 'video') {
+                const video = document.createElement('video');
+                video.src = `/images/${media}`;
+                video.controls = true;
+                video.autoplay = true;
+                modalContent.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = `/images/${media}`;
+                modalContent.appendChild(img);
+            }
+            modal.style.display = 'flex';
+        }
+
+        function closeModalHandler() {
+            modal.style.display = 'none';
+            const video = modalContent.querySelector('video');
+            if (video) {
+                video.pause();
+            }
+        }
+
+        closeModal.addEventListener('click', closeModalHandler);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModalHandler();
+            }
+        });
+
+        instagramItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const media = item.dataset.media;
+                const type = item.dataset.type;
+                openModal(media, type);
+            });
+        });
+
+        // Add hover effect to buttons
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-2px)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
   </body>
 </html>
