@@ -1,28 +1,239 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Tea | Link Tree</title>
-    <meta name="description" content="Connect with Happy Tea - Your favorite bubble tea destination" />
-    <meta name="author" content="Happy Tea" />
+    <title>Happy Tea</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
 
-    <meta property="og:title" content="Happy Tea | Link Tree" />
-    <meta property="og:description" content="Find all links to Happy Tea - Your favorite bubble tea destination" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        body {
+            background: linear-gradient(135deg, #FFE5E5 0%, #FFF5E5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@happytea" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap">
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+        }
+
+        .logo-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+            opacity: 0.4;
+            z-index: 1;
+            animation: fillBobaTea 2s ease-in-out infinite;
+        }
+
+        @keyframes fillBobaTea {
+            0%, 100% { height: 50%; }
+            50% { height: 55%; }
+        }
+
+        .title {
+            text-align: center;
+            color: #FF6B6B;
+            font-size: 2rem;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: white;
+            border: 2px solid #FF6B6B;
+            border-radius: 12px;
+            color: #FF6B6B;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            background: #FF6B6B;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .instagram-item {
+            aspect-ratio: 9/16;
+            position: relative;
+        }
+
+        .instagram-item img, .instagram-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instagram-card {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .instagram-card:hover {
+            background: rgba(0, 0, 0, 0.15);
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        .instagram-card img {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .title {
+                font-size: 1.75rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .button {
+                padding: 12px 20px;
+            }
+        }
+    </style>
   </head>
 
   <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo-frame">
+                <div class="logo-liquid"></div>
+                <img src="/images/happytealogo.jpg" alt="Happy Tea Logo" class="logo-image">
+            </div>
+        </div>
+        
+        <h1 class="title">Happy Tea</h1>
+        <p class="subtitle">¡Descubre nuestros deliciosos sabores!</p>
+        
+        <div class="button-container">
+            <a href="https://www.instagram.com/happytea.uy" class="button">
+                <img src="/images/instagram.svg" alt="Instagram">
+                Instagram
+            </a>
+            <a href="https://wa.me/59899123456" class="button">
+                <img src="/images/whatsapp.svg" alt="WhatsApp">
+                WhatsApp
+            </a>
+            <a href="https://www.pedidosya.com.uy/restaurantes/montevideo/happy-tea-menu" class="button">
+                <img src="/images/pedidosya.svg" alt="PedidosYa">
+                PedidosYa
+            </a>
+        </div>
+        
+        <div class="instagram-grid">
+            <div class="instagram-item">
+                <video autoplay muted loop playsinline>
+                    <source src="/images/vid1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="instagram-item">
+                <img src="/images/bienvnido a otono.jpg" alt="Bienvenido Otoño">
+            </div>
+            <div class="instagram-item">
+                <video autoplay muted loop playsinline>
+                    <source src="/images/vid2.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        
+        <a href="https://www.instagram.com/happytea.uy" class="instagram-card">
+            <img src="/images/instagram.svg" alt="Instagram">
+            @happytea.uy
+        </a>
+    </div>
   </body>
 </html>
