@@ -13,6 +13,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <div className="bubble-1" />
+      <div className="bubble-2" />
+      <div className="bubble-3" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />

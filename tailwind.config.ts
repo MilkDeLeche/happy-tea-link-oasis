@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -73,7 +72,9 @@ export default {
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
-				nunito: ['Nunito', 'sans-serif']
+				nunito: ['Nunito', 'sans-serif'],
+				'summer-pinch': ['SummerPinch', 'cursive'],
+				'nord': ['Nord', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
